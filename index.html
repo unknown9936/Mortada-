@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موقع مرتضى الشخصي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    * {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      color: #222;
+      text-align: center;
+    }
+
+    header {
+      background-color: #1565c0;
+      color: white;
+      padding: 30px 10px;
+    }
+
+    nav {
+      background-color: #0d47a1;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    h2 {
+      color: #0d47a1;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #f1f1f1;
+      padding: 20px;
+      margin: 10px auto;
+      max-width: 500px;
+      border-radius: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 200px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #1565c0;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #result1, #result2, #result3 {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    footer {
+      background-color: #eeeeee;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    a.contact-link {
+      color: #1565c0;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="home">
+    <h1>مرحباً بكم في موقعي الشخصي</h1>
+    <p>أنا مرتضى، أقدم لكم بعض أعمالي وبرامج حسابية مفيدة، وطرق للتواصل معي.</p>
+  </header>
+
+  <nav>
+    <a href="#works">الأعمال</a>
+    <a href="#tools">البرامج الحسابية</a>
+    <a href="#contact">تواصل معي</a>
+  </nav>
+
+  <!-- الأعمال -->
+  <section id="works">
+    <h2>الأعمال</h2>
+    <div class="card">
+      <h3>موقع شخصي</h3>
+      <p>صممت هذا الموقع التعريفي باستخدام HTML وCSS وJavaScript</p>
+    </div>
+    <div class="card">
+      <h3>برامج حسابية</h3>
+      <p>أدوات لحساب المساحات والأحجام والمعادلات التربيعية.</p>
+    </div>
+  </section>
+
+  <!-- البرامج الحسابية -->
+  <section id="tools">
+    <h2>البرامج الحسابية</h2>
+
+    <!-- حجم الأسطوانة -->
+    <div class="card">
+      <h3>حساب حجم الأسطوانة</h3>
+      <input type="number" id="radius1" placeholder="نصف القطر (سم)">
+      <input type="number" id="height1" placeholder="الارتفاع (سم)">
+      <br>
+      <button onclick="calcCylinder()">احسب</button>
+      <div id="result1"></div>
+    </div>
+
+    <!-- مساحة الدائرة -->
+    <div class="card">
+      <h3>حساب مساحة الدائرة</h3>
+      <input type="number" id="radius2" placeholder="نصف القطر (سم)">
+      <br>
+      <button onclick="calcCircle()">احسب</button>
+      <div id="result2"></div>
+    </div>
+
+    <!-- معادلة الدرجة الثانية -->
+    <div class="card">
+      <h3>حل معادلة من الدرجة الثانية</h3>
+      <input type="number" id="a" placeholder="القيمة a">
+      <input type="number" id="b" placeholder="القيمة b">
+      <input type="number" id="c" placeholder="القيمة c">
+      <br>
+      <button onclick="solveQuadratic()">احسب</button>
+      <div id="result3"></div>
+    </div>
+  </section>
+
+  <!-- تواصل -->
+  <section id="contact">
+    <h2>تواصل معي</h2>
+    <p>للتواصل معي عبر فيسبوك:</p>
+    <a class="contact-link" href="https://www.facebook.com" target="_blank">رابط صفحتي على فيسبوك</a>
+  </section>
+
+  <footer>
+    <p>© 2025 مرتضى. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function calcCylinder() {
+      const r = parseFloat(document.getElementById('radius1').value);
+      const h = parseFloat(document.getElementById('height1').value);
+      if (isNaN(r) || isNaN(h)) {
+        document.getElementById('result1').textContent = "الرجاء إدخال قيم صحيحة.";
+        return;
+      }
+      const volume = Math.PI * r * r * h;
+      document.getElementById('result1').textContent = "الحجم = " + volume.toFixed(2) + " سم³";
+    }
+
+    function calcCircle() {
+      const r = parseFloat(document.getElementById('radius2').value);
+      if (isNaN(r)) {
+        document.getElementById('result2').textContent = "الرجاء إدخال نصف القطر.";
+        return;
+      }
+      const area = Math.PI * r * r;
+      document.getElementById('result2').textContent = "المساحة = " + area.toFixed(2) + " سم²";
+    }
+
+    function solveQuadratic() {
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c = parseFloat(document.getElementById('c').value);
+      const result = document.getElementById('result3');
+
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        result.textContent = "يرجى إدخال قيم صحيحة.";
+        return;
+      }
+
+      const d = b * b - 4 * a * c;
+
+      if (d > 0) {
+        const x1 = (-b + Math.sqrt(d)) / (2 * a);
+        const x2 = (-b - Math.sqrt(d)) / (2 * a);
+        result.textContent = "الحلان: x1 = " + x1.toFixed(2) + ", x2 = " + x2.toFixed(2);
+      } else if (d === 0) {
+        const x = -b / (2 * a);
+        result.textContent = "حل واحد: x = " + x.toFixed(2);
+      } else {
+        result.textContent = "لا يوجد حلول حقيقية (المميز سالب).";
+      }
+    }
+  </script>
+
+</body>
+</html>
